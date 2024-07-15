@@ -140,7 +140,6 @@ describe("Task Service Test Suite", () => {
     });
   });
 
-
   describe("Task Service Test Suite", () => {
     let taskModelFindTaskByIdStub: sinon.SinonStub;
     let taskModelFindTaskIndexByIdStub: sinon.SinonStub;

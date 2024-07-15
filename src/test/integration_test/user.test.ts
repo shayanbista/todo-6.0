@@ -119,8 +119,7 @@ describe("User Integration Test Suite", () => {
               "$2b$10$I24gdNea7i6fSXPl1uy96.cle9N5v6Zt8HyZTkTpFhD.kwzHeBHNW",
           });
 
-        expect(response.body.message).toBe("user not found");
-        // expect(response.status).toBe(400);
+        expect(response.status).toBe(400);
       });
     });
 
@@ -132,13 +131,13 @@ describe("User Integration Test Suite", () => {
           .set("Authorization", token);
         expect(response.status).toBe(200);
       });
-      // it("it Should show id doesnot exist for non existent user ", async () => {
-      //   const userId = "10";
-      //   const response = await request(app)
-      //     .put(`/users/${userId}`)
-      //     .set("Authorization", token);
-      //   expect(response.status).toBe(400);
-      // });
+      it("it Should show id doesnot exist for non existent user ", async () => {
+        const userId = "10";
+        const response = await request(app)
+          .put(`/users/${userId}`)
+          .set("Authorization", token);
+        expect(response.status).toBe(400);
+      });
     });
   });
-});
+})

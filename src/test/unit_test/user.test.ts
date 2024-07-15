@@ -32,35 +32,6 @@ describe("User Service Test Suite", () => {
       userModelCreateUserStub.restore();
       getUserByEmailStub.restore();
     });
-    //   const user = {
-    //     id: 1,
-    //     name: "test",
-    //     email: "test@test.com",
-    //     password: "password123",
-    //     role: Roles.USER,
-    //     permissions: [],
-    //   };
-    //   getUserByEmailStub.resolves(user);
-    //   await expect(userModel.createUser(user)).toThrowError(
-    //     "User already exists"
-    //   );
-    // });
-
-    // it("should throw an error if user already exists", async () => {
-    //   const mockUser = {
-    //     id: 1,
-    //     name: "Test",
-    //     email: "test@test.com",
-    //     password: "test1234",
-    //     role: Roles.USER,
-    //     permissions: [`${Roles.SUPERADMIN}`],
-    //   };
-    //   getUserByEmailStub.resolves(mockUser);
-
-    //   await expect(
-    //     async () => await userModel.createUser(mockUser)
-    //   ).toThrowError("User already exists");
-    // });
 
     it("should create user", async () => {
       bcryptHashStub.resolves("hashedPassword");
@@ -111,7 +82,6 @@ describe("User Service Test Suite", () => {
       expect(result).toBeNull();
     });
   });
-
 
   describe("updateUsers", () => {
     let userModelFindUserIndexByIdStub: sinon.SinonStub;
