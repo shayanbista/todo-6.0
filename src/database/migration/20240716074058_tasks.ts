@@ -1,9 +1,9 @@
 import { Knex } from "knex";
 
-const TABLE_NAME = "role-permissions";
+const TABLE_NAME = "tasks";
 
 /**
- * Create table rolePermissions.
+ * Create table tasks.
  *
  * @param   {Knex} knex
  * @returns {Promise}
@@ -12,42 +12,23 @@ export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable(TABLE_NAME, (table) => {
     table.bigIncrements();
 
+    table.string("title").notNullable();
+    table.boolean("is_created");
     table
-      .bigInteger("roleId")
+      .bigInteger("user_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("roles");
-
-    table
-      .bigInteger("permissionId")
-      .unsigned()
-      .notNullable()
-      .references("id")
-      .inTable("permissions");
+      .inTable("users");
 
     table.timestamp("created_at").notNullable().defaultTo(knex.raw("now()"));
 
-    table
-      .bigInteger("created_by")
-      .unsigned()
-      .nullable()
-      .references("id")
-      .inTable(TABLE_NAME);
-
     table.timestamp("updated_at").nullable();
-
-    table
-      .bigInteger("updated_by")
-      .unsigned()
-      .references("id")
-      .inTable(TABLE_NAME)
-      .nullable();
   });
 }
 
 /**
- * Drop table rolePermissions.
+ * Drop table tasks.
  *
  * @param   {Knex} knex
  * @returns {Promise}
