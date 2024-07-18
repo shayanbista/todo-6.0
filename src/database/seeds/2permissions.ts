@@ -29,6 +29,7 @@ export function seed(knex: Knex): Promise<void> {
         {
           permission: "task.get",
         },
+
         {
           permission: "task.put",
         },

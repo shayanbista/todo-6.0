@@ -1,24 +1,21 @@
+import { User } from "./../interface/user";
+import { UserModel } from "./../model/UserModel";
 import bcrypt from "bcrypt";
-import { User } from "../interface/user";
 import * as userModel from "../model/user";
 import { Roles } from "../constant/Roles";
 import { permissions } from "../constant/Permission";
 import loggerWithNameSpace from "../utils/logger";
 import { BadRequestError } from "../error/BadRequestError";
+import * as UserModel1 from "../model/UserModel";
 
 const logger = loggerWithNameSpace("User Service");
 
 export const createUser = async (user: User) => {
-  const existingUser = getUserByEmail(user.email);
-  if (existingUser) {
+  // const existingUser = getUserByEmail(user.email);
+  const newUser = await UserModel1.UserModel.create(user);
+  if (!newUser) {
     return null;
   } else {
-    const password = await bcrypt.hash(user.password, 10);
-    const userRole = Roles.USER;
-    user.role = Roles.USER;
-    user.permissions = permissions[Roles.USER];
-    const newUser = userModel.createUser({ ...user, password });
-    logger.info("User created");
     return true;
   }
 };

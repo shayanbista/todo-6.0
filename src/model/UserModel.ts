@@ -8,6 +8,6 @@ export class UserModel extends BaseModel {
       email: user.email,
       password: user.password,
     };
-    await this.queryBuilder().insert(userToCreate).table("users");
+    return await this.queryBuilder().insert(userToCreate).table("users");
   }
 }
